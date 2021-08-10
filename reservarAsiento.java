@@ -4,14 +4,14 @@ public class reservarAsiento {
     public static Scanner teclat= new Scanner(System.in);//Para poder introducir textos/numeros
     public static int fila=0;
     public static int columna=0;
-    public static void omplirSeients(char[][] seients){
+    public static void omplirSeients(char[][] seients){// Se rellenara la matriz con O para indicarle que los asientos estan libres.
         System.out.println("Seients actuals:\n------------");
         for (fila=0; fila<seients.length; fila++){
             for (columna=0; columna< seients.length; columna++) seients[fila][columna]='O';
         }
         mostrarSeients(seients);
     }
-    public static void mostrarSeients(char[][] seientsMatriu){
+    public static void mostrarSeients(char[][] seientsMatriu){//Mostrara al usuario los asientos llibres con un O i reservados con un X-
         System.out.println("  1 2 3 4 5");
         for (fila=0; fila<seientsMatriu.length; fila++){
             System.out.print(fila+1 + " ");
@@ -19,7 +19,7 @@ public class reservarAsiento {
             System.out.println();
         }
     }
-    public static void reservarCliente(){
+    public static void reservarCliente(){ //Para confirmar que quiere reservar lo pregunta.
         String resposta;
         System.out.println("Vols reservar seients?(Si/No)");
         resposta= teclat.next();
@@ -28,19 +28,19 @@ public class reservarAsiento {
             System.exit(0);
         }
     }
-    public static int demanarSeients(int seients){
+    public static int demanarSeients(int seients){ //Le pedira un numero de asientos al usuario.
         System.out.println("Quants seients vols reservar?");
         do{
             try{
                 teclat.nextLine();
                 seients= teclat.nextInt();
-                if (seients<=0){
+                if (seients<1 || seients>25){
                     System.out.println("Introdueix un numero superior que 0:");
                 }
             }catch(InputMismatchException ime){//Para que no salte el error y poder continuar el programa si el usuario introduce un caracter.
                 System.out.println("Introdueix un numero, no un caracter.");
             }
-        }while(seients<=0);// Si el numero de seients es menor o igual que 0 o superior a 25
+        }while(seients<1 || seients>25);// Si el numero de seients es menor o igual que 0 o superior a 25
         return seients;
     }
     public static void triaSeients(char[][] seientsMatriu, int seients){
